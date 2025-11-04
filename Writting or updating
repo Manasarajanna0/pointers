@@ -1,0 +1,23 @@
+//Writting/Updating a new value of array
+#include <stdio.h>
+
+int main()
+{
+    int arr[]={25,40,38,67,10};
+    int n =sizeof(arr)/sizeof(arr[0]);
+    int index = 2;
+    int newval = 20;
+    if(index>=0 && index<n)
+    {
+      arr[index] = newval;
+    for(int i=0;i<n;i++)
+        printf("%d ",arr[i]);
+    
+}
+    else {
+    printf("happy diwali");
+}
+}
+
+Output
+25 40 20 67 10 
