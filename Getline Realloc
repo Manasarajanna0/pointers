@@ -1,0 +1,13 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+char* getLine(void) {
+    char *str = NULL;
+    int size = 0, ch;
+    while ((ch = getchar()) != '\n' && ch != EOF) {
+        str = realloc(str, size + 2);
+        str[size++] = ch;
+    }
+    if (str) str[size] = '\0';
+    return str;
+}
