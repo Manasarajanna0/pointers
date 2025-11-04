@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+    int *data;
+    int size, cap;
+} Vector;
+
+void init(Vector *v) {
+    v->size = 0;
+    v->cap = 2;
+    v->data = malloc(v->cap * sizeof(int));
+}
+void push(Vector *v, int val) {
+    if (v->size == v->cap) {
+        v->cap *= 2;
+        v->data = realloc(v->data, v->cap * sizeof(int));
+    }
+    v->data[v->size++] = val;
+}
+void freeVec(Vector *v) { free(v->data); }
+
+int main() {
+    Vector v; init(&v);
+    for (int i = 0; i < 10; i++) push(&v, i * 10);
+    for (int i = 0; i < v.size; i++) printf("%d ", v.data[i]);
+    freeVec(&v);
+}
