@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    int val;
+    struct Node *next;
+} Node;
+
+Node* createNode(int val) {
+    Node* n = malloc(sizeof(Node));
+    n->val = val; n->next = NULL;
+    return n;
+}
+
+void deleteKthFromEnd(Node **head, int k) {
+    Node *fast = *head, *slow = *head;
+    for (int i = 0; i < k; i++) fast = fast->next;
+    if (!fast) { // delete head
+        Node *tmp = *head;
+        *head = (*head)->next;
+        free(tmp);
+        return;
+    }
+    while (fast->next) {
+        fast = fast->next;
+        slow = slow->next;
+    }
+    Node *tmp = slow->next;
+    slow->next = tmp->next;
+    free(tmp);
+}
+
+void freeList(Node *head) {
+    while (head) {
+        Node *t = head;
+        head = head->next;
+        free(t);
+    }
+}
