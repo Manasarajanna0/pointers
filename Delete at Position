@@ -1,0 +1,18 @@
+#include <stdio.h>
+#define CAP 100
+int main() {
+int a[CAP] = {10, 20, 30, 40, 50};
+int n = 5;
+int pos = 2; // delete the element at index 2 (value 30)
+if (pos < 0 || pos >= n) {printf("Invalid position\n");
+return 0;
+}
+// shift left from pos+1 to end
+for (int i = pos; i < n-1; i++) {
+a[i] = a[i+1];
+}
+n--;
+for (int i = 0; i < n; i++) printf("%d ", a[i]);
+printf("\n");
+return 0;
+}
